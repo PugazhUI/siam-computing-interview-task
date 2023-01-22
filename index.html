@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Siam-computing - Interview task</title>
+    <!-- CSS Files -->
+    <link href="css/vendor/slick.css" rel="stylesheet" type="text/css" />
+    <link href="css/vendor/slick-theme.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <section class="gallery">
+        <div class="container">
+            <!-- Gallery Filter -->
+            <div class="gallery-filter">
+                <ul class="gallery-filter-list">
+                    <li class="gallery-filter-list-item"><a class="active" onclick="loadImages('plant', this)">Plant</a></li>
+                    <li class="gallery-filter-list-item"><a onclick="loadImages('building', this)">Building</a></li>
+                    <li class="gallery-filter-list-item"><a onclick="loadImages('nature', this)">Nature</a></li>
+                    <li class="gallery-filter-list-item"><a onclick="loadImages('animal', this)">Animal</a></li>
+                    <li class="gallery-filter-list-item"><a onclick="loadImages('mountain', this)">Mountain</a></li>
+                </ul>
+            </div>
+            <!-- Gallery Images -->
+            <div class="gallery-images">
+                <ul class="gallery-images-list" id="imageDiv"></ul>
+            </div>
+    </section> 
+      <!-- Lightbox -->
+      <div id="lightbox" class="lightbox">
+        <div class="img-profile">
+            <div class="avatar"><img id="avatarImg" src="" alt="avatar-img"/></div>
+            <div id="imgName" class="img-name">Boxed Water Is Better</div>
+        </div>   
+        <a id="download" class="download-btn" href="" target="_blank">Download</a>
+
+        <div class="lightbox-img"><img id="lightboxImg" src="" alt="main-img"/></div>
+
+        <div class="no-of-views">
+            <strong class="label">Views</strong>
+            <span id="noOfViews" class="value">0</span>
+        </div>
+        <div class="no-of-downloads">
+            <strong class="label">Downloads</strong>
+            <span id="noOfDownloads" class="value">0</span>
+        </div>
+
+        <div class="filter"></div>        
+        <div id="rightArw" class="arrowr"></div>
+        <div id="leftArw" class="arrowl"></div>
+        <div id="close" class="close" onclick="closeLightBox()"></div>
+      </div>
+      <div id="loader" class="loader"><img src="images/loader.gif" alt="loader"/></div>
+
+    <!-- JS Files -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
+    <script src="js/vendor/slick.min.js" type="text/javascript"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+</body>
+
+</html>
