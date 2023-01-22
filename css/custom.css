@@ -368,6 +368,10 @@ strong {
     height: 100%;
     z-index: 99;
 }
+.loader span {
+    display: block;
+    background-color: #ffffff;
+}
 .loader.hide {
     display: none;
 }
