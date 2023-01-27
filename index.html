@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siam-computing - Interview task</title>
-    <!-- CSS Files -->    
+    <!-- CSS Files -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -15,7 +17,8 @@
             <!-- Gallery Filter -->
             <div class="gallery-filter">
                 <ul class="gallery-filter-list">
-                    <li class="gallery-filter-list-item"><a class="active" onclick="loadImages('plant', this)">Plant</a></li>
+                    <li class="gallery-filter-list-item"><a class="active" onclick="loadImages('plant', this)">Plant</a>
+                    </li>
                     <li class="gallery-filter-list-item"><a onclick="loadImages('building', this)">Building</a></li>
                     <li class="gallery-filter-list-item"><a onclick="loadImages('nature', this)">Nature</a></li>
                     <li class="gallery-filter-list-item"><a onclick="loadImages('animal', this)">Animal</a></li>
@@ -26,32 +29,74 @@
             <div class="gallery-images">
                 <ul class="gallery-images-list" id="imageDiv"></ul>
             </div>
-    </section> 
-      <!-- Lightbox -->
-      <div id="lightbox" class="lightbox">
-        <div class="img-profile">
-            <div class="avatar"><img id="avatarImg" src="" alt="avatar-img"/></div>
-            <div id="imgName" class="img-name">Boxed Water Is Better</div>
-        </div>   
-        <a id="download" class="download-btn" href="" target="_blank">Download</a>
-
-        <div class="lightbox-img"><img id="lightboxImg" src="" alt="main-img"/></div>
-
-        <div class="no-of-views">
-            <strong class="label">Views</strong>
-            <span id="noOfViews" class="value">0</span>
+    </section>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-content-top">
+                <div class="img-profile">
+                    <div class="avatar"><img id="avatarImg" src="" alt="avatar-img" /></div>
+                    <div id="imgName" class="img-name">Boxed Water Is Better</div>
+                </div>
+                <div class="fav-and-download">
+                    <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-heart"></i></a>
+                    <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-plus"></i></a>
+                    <a id="download" class="download-btn" href="" target="_blank">Download</a>
+                </div>
+            </div>
+            <div class="lightbox-img"><img id="lightboxImg" src="" alt="main-img" /></div>
+            <div class="lightbox-content-btm">
+                <div class="views-and-downloads">
+                    <div class="no-of-views">
+                        <strong class="label">Views</strong>
+                        <span id="noOfViews" class="value">0</span>
+                    </div>
+                    <div class="no-of-downloads">
+                        <strong class="label">Downloads</strong>
+                        <span id="noOfDownloads" class="value">0</span>
+                    </div>
+                </div>
+                <div class="share-and-info">
+                    <a class="btn btn-share" onclick="showLogin(event)"><i class="fa fa-share"></i><span>Share</span></a>
+                    <a class="btn btn-info" onclick="showLogin(event)"><i class="fa fa-info-circle"></i><span>Info</span></a>
+                </div>
+            </div>
         </div>
-        <div class="no-of-downloads">
-            <strong class="label">Downloads</strong>
-            <span id="noOfDownloads" class="value">0</span>
-        </div>
-
-        <div class="filter"></div>        
+        <!-- <div class="filter"></div>         -->
         <div id="rightArw" class="arrowr"></div>
         <div id="leftArw" class="arrowl"></div>
         <div id="close" class="close" onclick="closeLightBox()"></div>
-      </div>
-      <div id="loader" class="loader"><span><img src="images/loader.gif" alt="loader"/></span></div>
+    </div>
+    <!-- Login modal -->
+    <div id="loginModal" class="login-modal hide">
+        <div class="login-modal-content">
+            <div class="login-modal-img"></div>
+            <div class="login-modal-form">
+                <div>
+                    <h3 class="login-title">Login</h3>
+                    <p>To collect Dom Hill's photo, login.</p>
+                    <a class="btn login-with-fb"><i class="fa fa-facebook-official"></i>Login with Facebook</a>                
+                <form action="" method="">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" />
+                        <a href="" class="forgot-pwd">Forgot your password?</a>
+                    </div>
+                    <button type="button" class="btn btn-login">Login</button>
+                </form>
+            </div>
+                <div class="join">
+                    <p>Don’t have an account? <a href="">Join</a></p>
+                </div>
+            </div>
+        </div>
+        <div id="closeLoginModal" class="close" onclick="hideLogin()"></div>
+    </div>
+    <div id="loader" class="loader"><span><img src="images/loader.gif" alt="loader" /></span></div>
 
     <!-- JS Files -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
