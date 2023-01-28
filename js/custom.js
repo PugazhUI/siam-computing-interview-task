@@ -11,6 +11,7 @@ function loadImages(category, elem) {
         url: 'https://api.unsplash.com/search/photos?client_id=m8SK2lmN0qKjHSu9yO0CqJUNfuJo6cW0AjlZmcRmeaI&per_page=10&query=' + category,
         beforeSend: function (data) {showLoader('true');},
         success: function (response) {
+            // console.log(response);
             processImages(response, category);
             showLoader('false');            
         }
@@ -45,20 +46,46 @@ function processImages(images, category) {
         imageId = "'" + images[i].id + "'";
         if (imageData == "") {
             imageData = `
-            <li id="${imageId}" class="gallery-images-list-item" onmouseenter="showHoverDetails(${imageId}, this)" onmouseleave="hideHoverDetails(this)" >
+            <li id="${imageId}" class="gallery-images-list-item">
                 <a>
                     <img src="${images[i].urls.regular}" alt="${category}" onclick="getImageDetails(${imageId})"/>
-                </a>                
+                </a>    
+                <div id="hoverElem" class="hover-element" onClick="getImageDetails(${imageId})">
+                    <div class="hover-element-btm">
+                        <div class="img-profile">
+                            <div class="avatar"><img id="hoverAvatarImg" src="${images[i].user.profile_image.small}" alt="avatar-img" /></div>
+                            <div id="hoverImgName" class="img-name">${images[i].user.username}</div>
+                        </div>
+                        <a id="hoverDownload" class="btn btn-icon" href="${images[i].links.download}" target="_blank"><i class="fa fa-arrow-down"></i></a>
+                    </div>        
+                    <div class="fav-and-download">
+                        <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-heart"></i></a>
+                        <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-plus"></i></a>            
+                    </div>        
+                </div>            
             </li>            
             `;
         }
         else {
             imageData +=
             `
-            <li id="${imageId}" class="gallery-images-list-item" onmouseenter="showHoverDetails(${imageId}, this)" onmouseleave="hideHoverDetails(this)">
+            <li id="${imageId}" class="gallery-images-list-item">
                 <a>
                     <img src="${images[i].urls.regular}" alt="${category}" onclick="getImageDetails(${imageId})"/>
                 </a>
+                <div id="hoverElem" class="hover-element" onClick="getImageDetails(${imageId})">
+                    <div class="hover-element-btm">
+                        <div class="img-profile">
+                            <div class="avatar"><img id="hoverAvatarImg" src="${images[i].user.profile_image.small}" alt="avatar-img" /></div>
+                            <div id="hoverImgName" class="img-name">${images[i].user.username}</div>
+                        </div>
+                        <a id="hoverDownload" class="btn btn-icon" href="${images[i].links.download}" target="_blank"><i class="fa fa-arrow-down"></i></a>
+                    </div>        
+                    <div class="fav-and-download">
+                        <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-heart"></i></a>
+                        <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-plus"></i></a>            
+                    </div>        
+                </div>
             </li>            
             `;
         }
@@ -95,10 +122,11 @@ function lightBox(lightBoxImg, noOfViews, noOfDownloads, downloadLink, userName,
     $('#noOfViews').html(noOfViews);
     $('#noOfDownloads').html(noOfDownloads);
     $('#download').attr('href', downloadLink);
+    $('#imgName').html(userName);
     var imageIds = JSON.parse(localStorage.getItem('imageIds'));
     $('#leftArw, #rightArw').show();
-    console.log(imageIds);
-    console.log(imageId);
+    // console.log(imageIds);
+    // console.log(imageId);
     var currentImageIndex = imageIds.indexOf(imageId);
     if(currentImageIndex == 0){
         $('#leftArw').hide();
@@ -133,35 +161,6 @@ function showLogin(e){
 function hideLogin(){
     $('body').removeClass('ov-hidden');
     $('#loginModal').addClass('hide');
-}
-
-// Hover function
-function showHoverDetails(imageId, elem) {   
-    // console.log(elem)
-    $.ajax({
-        type: 'get',
-        url: 'https://api.unsplash.com/photos/' + imageId + '?client_id=m8SK2lmN0qKjHSu9yO0CqJUNfuJo6cW0AjlZmcRmeaI',
-        beforeSend: function (data) {
-            // showLoader('true');
-        },
-        success: function (response) {
-            $(elem).append(`
-                <div id="hoverElem" class="hover-element" onClick="getImageDetails('${imageId}')">
-                    <div class="hover-element-btm">
-                        <div class="img-profile">
-                            <div class="avatar"><img id="hoverAvatarImg" src="${response.user.profile_image.small}" alt="avatar-img" /></div>
-                            <div id="hoverImgName" class="img-name">${response.user.username}</div>
-                        </div>
-                        <a id="hoverDownload" class="btn btn-icon" href="${response.links.download}" target="_blank"><i class="fa fa-arrow-down"></i></a>
-                    </div>        
-                    <div class="fav-and-download">
-                        <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-heart"></i></a>
-                        <a class="btn btn-icon" onclick="showLogin(event)"><i class="fa fa-plus"></i></a>            
-                    </div>        
-                </div>`
-            );
-        }
-    });       
 }
 
 function hideHoverDetails(elem){

@@ -244,6 +244,14 @@ strong {
     top: 0;
     cursor: -webkit-zoom-in;
     cursor: zoom-in;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease;
+}
+
+.gallery-images-list .gallery-images-list-item:hover .hover-element {
+    visibility: visible;
+    opacity: 1;
 }
 
 .gallery-images-list .gallery-images-list-item .hover-element .hover-element-btm {
@@ -256,15 +264,18 @@ strong {
     width: 100%;
     align-items: flex-end;
 }
+
 .gallery-images-list .gallery-images-list-item .hover-element .hover-element-btm a {
     margin: 0;
 }
+
 .gallery-images-list .gallery-images-list-item .hover-element .fav-and-download {
     padding: 1rem;
     position: absolute;
     top: 0;
     right: 0;
 }
+
 .gallery-images-list .gallery-images-list-item .hover-element .img-name {
     color: #ffffff;
 }
@@ -376,7 +387,7 @@ strong {
 }
 
 .close {
-    position: absolute;
+    position: fixed;
     left: 1.5rem;
     top: 1.5rem;
     width: 50px;
@@ -514,6 +525,7 @@ strong {
     border-radius: 4px;
     color: #111111;
     display: flex;
+    max-width: 100%;
 }
 
 .login-modal-img {
@@ -613,4 +625,60 @@ strong {
 
 .login-modal-form .join p a {
     color: #767676;
+}
+
+
+/* Media css (RWD) */
+@media only screen and (max-width: 991.98px) {
+
+    .login-modal-form div {
+        padding: 2rem;
+    }
+}
+
+@media only screen and (max-width: 767.98px) {
+    .lightbox {
+        padding: 1rem 3rem;
+    }
+
+    .lightbox-img img {
+        max-width: 90%;
+        max-height: 60vh;
+    }
+
+    .close {
+        left: 0;
+    }
+
+    .arrowr {
+        right: 0;
+    }
+
+    .arrowl {
+        left: 0rem;
+    }
+
+    .lightbox-content-top,
+    .lightbox-content-btm {
+        flex-wrap: wrap;
+        row-gap: 0.25rem;
+    }
+
+    .login-modal {
+        padding: 1rem 3rem;
+        align-items: flex-start;
+        overflow: auto;
+    }
+
+    .login-modal-content {
+        flex-direction: column;
+    }
+
+}
+
+@media only screen and (max-width: 575.98px) {
+    .gallery {
+        padding: 2rem 1rem;
+    }
+
 }
